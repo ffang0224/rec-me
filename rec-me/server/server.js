@@ -5,6 +5,12 @@ require("dotenv").config();
 
 const app = express();
 
+// DISCLAIMER: Various parts of this server code have been created with Claude AI. 
+// All parts have been modified manually. 
+
+// The parts created by Claude AI are marked with a comment.
+
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -26,7 +32,7 @@ app.get("/api/recommendations", async (req, res) => {
     console.log("Making request with params:", {
       q,
       type,
-      k: apiKey.substring(0, 5) + "...", // Log partial key for debugging
+      k: apiKey,
       info: 1,
       limit: 20,
     });
@@ -49,6 +55,7 @@ app.get("/api/recommendations", async (req, res) => {
     //console.log("API Response Status:", response.status);
     //console.log("API Response Data:", JSON.stringify(response.data, null, 2));
 
+    // Check if the response is a valid JSON object
     if (!response.data) {
       return res.status(500).json({
         error: "Invalid API response format",
@@ -56,6 +63,7 @@ app.get("/api/recommendations", async (req, res) => {
       });
     }
 
+    // Check if the response contains a "Similar" property
     if (!response.data["similar"]) {
       return res.status(500).json({
         error: "Invalid API response format",
@@ -72,16 +80,19 @@ app.get("/api/recommendations", async (req, res) => {
       status: error.response?.status,
     });
 
+    // Check if the error is due to an invalid/nonexistent API key
     if (error.response?.status === 401) {
       return res.status(401).json({ error: "Invalid API key" });
     }
 
+    // Check if the error is due to API key quota exceeded or access denied (limit of 300 requests per hour)
     if (error.response?.status === 403) {
       return res
         .status(403)
         .json({ error: "API key quota exceeded or access denied" });
     }
 
+    // 500 status code for all other errors
     res.status(500).json({
       error: "Failed to fetch recommendations",
       details: error.message,
@@ -90,6 +101,8 @@ app.get("/api/recommendations", async (req, res) => {
   }
 });
 
+
+// Open 3001 port for the server. If needed to specify, modify a .env file at rec-me/rec-me/server.
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Proxy server running on port ${PORT}`);
