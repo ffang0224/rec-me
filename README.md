@@ -116,10 +116,6 @@ rec-me/rec-me/server/.env
 npm start
 ```
 
-## Development
-
-
-
 ## Contributing
 
 1. Fork the repository
@@ -127,6 +123,12 @@ npm start
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## AI Disclaimer
+
+Certain parts of the code in this project are partially generated with Claude 3.5 Sonnet (new) and Copilot. All code has been manually reviewed and tested. For more information, **check comments in code**.
+
+![alt text](image-1.png)
 
 ## License
 

@@ -10,7 +10,6 @@ const app = express();
 
 // The parts created by Claude AI are marked with a comment.
 
-
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -37,6 +36,7 @@ app.get("/api/recommendations", async (req, res) => {
       limit: 20,
     });
 
+    // This part has been created with Claude AI.
     const response = await axios({
       method: "get",
       url: "https://tastedive.com/api/similar",
