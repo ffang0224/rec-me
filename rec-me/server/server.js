@@ -15,7 +15,7 @@ app.get("/api/recommendations", async (req, res) => {
   try {
     const { q, type } = req.query;
 
-    const apiKey = "1039033-TasteChe-705E9A3D";
+    const apiKey = process.env.TASTEDIVE_API_KEY;
 
     if (!apiKey) {
       return res
