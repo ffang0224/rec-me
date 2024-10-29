@@ -2,7 +2,9 @@
 
 ![alt text](image.png)
 
-A React web application that provides personalized content recommendations based on user input. The application allows users to discover new content across multiple media types including movies, music, shows, podcasts, books, games, and more.
+Are you tired of searching for new shows that cater to your interests?
+
+Rec-Me is a React web application that provides personalized content recommendations based on user input. The application allows users to discover new content across multiple media types including movies, music, shows, podcasts, books, games, and more.
 
 ## Functionalities
 
